@@ -13,7 +13,7 @@ namespace StatesButton.Forms
 		#region Color Impl
 
 		public static readonly BindableProperty DisableBackgroundColorProperty =
-			BindableProperty.Create("DisableBackgroundColor", typeof(Color), typeof(StatesButtonControl), null, BindingMode.OneWay, null, null, null, null);
+			BindableProperty.Create("DisableBackgroundColor", typeof(Color), typeof(StatesButtonControl), Color.Default, BindingMode.OneWay, null, null, null, null);
 
 		public Color DisableBackgroundColor
 		{
@@ -26,7 +26,7 @@ namespace StatesButton.Forms
 		}
 
 		public static readonly BindableProperty PressedBackgroundColorProperty =
-			BindableProperty.Create("PressedBackgroundColor", typeof(Color), typeof(StatesButtonControl), null, BindingMode.OneWay, null, null, null, null);
+			BindableProperty.Create("PressedBackgroundColor", typeof(Color), typeof(StatesButtonControl), Color.Default, BindingMode.OneWay, null, null, null, null);
 
 		public Color PressedBackgroundColor
 		{

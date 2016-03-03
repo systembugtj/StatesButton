@@ -94,6 +94,9 @@ namespace StatesButton.Android.Renderers
 							},
 								new BitmapDrawable(imgDisable)
 							);
+
+							if (Control != null)
+								Control.Background = statesBackground;
 						}
 					}
 				}
