@@ -54,9 +54,9 @@ namespace StatesButton.iOS.Renderers
 				SetNativeControl (byPassButton);
 				base.Control.TouchUpInside += byPassButton_TouchUpInside;
 
-				SetField (this, "buttonTextColorDefaultNormal", base.Control.TitleColor (UIControlState.Normal));
-				SetField (this, "buttonTextColorDefaultHighlighted", base.Control.TitleColor (UIControlState.Highlighted));
-				SetField (this, "buttonTextColorDefaultDisabled", base.Control.TitleColor (UIControlState.Disabled));
+				SetField (this, "_buttonTextColorDefaultNormal", base.Control.TitleColor (UIControlState.Normal));
+				SetField (this, "_buttonTextColorDefaultHighlighted", base.Control.TitleColor (UIControlState.Highlighted));
+				SetField (this, "_buttonTextColorDefaultDisabled", base.Control.TitleColor (UIControlState.Disabled));
 
 				InvokeMethod (this, "UpdateText", null);
 				InvokeMethod (this, "UpdateFont", null);
