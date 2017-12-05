@@ -1,6 +1,6 @@
 ﻿using System;
 using Xamarin.Forms;
-#if__IOS__
+#if __IOS__
 using Xamarin.Forms.Platform.iOS;
 #elif __ANDROID__
 using Xamarin.Forms.Platform.Android;

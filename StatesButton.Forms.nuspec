@@ -1,52 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
-	<metadata minClientVersion="2.8.3">
+	<metadata>
 		<id>StatesButton.Forms</id>
-		<version>1.1.0</version>
+		<version>2.0.0</version>
 		<title>States Button for Xamarin.Forms</title>
 		<authors>Alejandro Ruiz</authors>
 		<owners>Alejandro Ruiz</owners>
-		<iconUrl>http://xamarinos.com/img/favicon.ico</iconUrl>
-    <licenseUrl>https://github.com/AlejandroRuiz/StatesButton/blob/master/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/AlejandroRuiz/StatesButton</projectUrl>
+		<iconUrl>http://alejandroruizvarela.com/images/statesbuttonlogo.png</iconUrl>
+        <licenseUrl>https://github.com/AlejandroRuiz/StatesButton/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/AlejandroRuiz/StatesButton</projectUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>
-      States Button for Xamarin.Forms.
-    </description>
+		<description>States Button for Xamarin.Forms.</description>
 		<summary>States Button for Xamarin.Forms.</summary>
 		<tags>xamarin, pcl, xam.pcl, plugin, plugin for xamarin.forms, android, xamarin.forms, ios, states, button</tags>
 		<dependencies>
+            <group targetFramework="win">
+                <dependency id="Xamarin.Forms" version="2.5.0.121934" />
+            </group>
+            <group targetFramework="netstandard1.0">
+                <dependency id="Xamarin.Forms" version="2.5.0.121934" />
+            </group>
+            <group targetFramework="portable-net45+win+wpa81+wp80">
+                <dependency id="Xamarin.Forms" version="2.5.0.121934" />
+            </group>
 			<group targetFramework="net">
-				<dependency id="Xamarin.Forms" version="2.2.0.31" />
+				<dependency id="Xamarin.Forms" version="2.5.0.121934" />
 			</group>
-			<group targetFramework="MonoAndroid">
-				<dependency id="Xamarin.Forms" version="2.2.0.31" />
+			<group targetFramework="MonoAndroid10">
+				<dependency id="Xamarin.Forms" version="2.5.0.121934" />
 			</group>
 			<group targetFramework="Xamarin.iOS10">
-				<dependency id="Xamarin.Forms" version="2.2.0.31" />
+				<dependency id="Xamarin.Forms" version="2.5.0.121934" />
 			</group>
 			<group targetFramework="portable-net45+win8+wpa81+wp8">
-				<dependency id="Xamarin.Forms" version="2.2.0.31" />
+				<dependency id="Xamarin.Forms" version="2.5.0.121934" />
 			</group>
+            <group targetFramework="portable-net45+win8+wpa81+wp8">
+                <dependency id="Xamarin.Forms" version="2.5.0.121934" />
+            </group>
 			<group targetFramework="dotnet">
-				<dependency id="Xamarin.Forms" version="2.2.0.31" />
+				<dependency id="Xamarin.Forms" version="2.5.0.121934" />
 			</group>
 		</dependencies>
 	</metadata>
 	<files>
-		<!--Core-->
-		<file src="StatesButton.Forms/bin/Release/StatesButton.Forms.dll" target="lib\portable-net45+wp8+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\StatesButton.Forms.dll" />
-		
-		<!--dotnet-->
-		<file src="StatesButton.Forms/bin/Release/StatesButton.Forms.dll" target="lib\portable-net45+wp8+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\StatesButton.Forms.dll" />
+        <!--PCL-->
+        <file src="StatesButton.Forms/bin/Release/StatesButton.Forms.dll" target="lib/portable-win+net45+wp80+win81+wpa81" />
+
+         <!--netstandard-->
+        <file src="StatesButton.Forms/bin/Release/StatesButton.Forms.dll" target="lib/netstandard1.0" />
 
 		<!--Xamarin.Android-->
-		<file src="StatesButton.Android/bin/Release/StatesButton.Android.dll" target="lib\MonoAndroid10\StatesButton.Android.dll" />
-		<file src="StatesButton.Forms/bin/Release/StatesButton.Forms.dll" target="lib\MonoAndroid10\StatesButton.Forms.dll" />
+		<file src="StatesButton.Android/bin/Release/StatesButton.Android.dll" target="lib/MonoAndroid10" />
+		<file src="StatesButton.Forms/bin/Release/StatesButton.Forms.dll" target="lib/MonoAndroid10" />
 
 		<!--Xamarin.iOS-->
-		<file src="StatesButton.iOS/bin/Release/StatesButton.iOS.dll" target="lib\Xamarin.iOS10\StatesButton.iOS.dll" />
-		<file src="StatesButton.Forms/bin/Release/StatesButton.Forms.dll" target="lib\Xamarin.iOS10\StatesButton.Forms.dll" />
-    
+		<file src="StatesButton.iOS/bin/Release/StatesButton.iOS.dll" target="lib/Xamarin.iOS10" />
+		<file src="StatesButton.Forms/bin/Release/StatesButton.Forms.dll" target="lib/Xamarin.iOS10" />
 	</files>
 </package>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using StatesButton.Forms;
 using Xamarin.Forms;
 
@@ -6,28 +7,37 @@ namespace StatesButton.Test
 {
 	public class App : Application
 	{
-		StatesButtonControl Button {
+		StatesButtonControl ColorButton
+        {
 			get;
 			set;
 		}
 
+        StatesButtonControl ImageButton
+        {
+            get;
+            set;
+        }
+
 		public App()
 		{
-			Button = new StatesButtonControl () {
-				Text = "Hello",
+            ColorButton = new StatesButtonControl
+            {
+				Text = "Hello Color",
 				BackgroundColor = Color.Red,
 				DisableBackgroundColor = Color.Blue,
 				PressedBackgroundColor = Color.Fuchsia,
 				TextColor = Color.White
 			};
 
-			/*Button = new StatesButtonControl () {
-				Text = "Hello",
-				NormalImage = "boton",
-				DisableImage = "boton_disabled",
-				PressedImage = "boton_press",
+            ImageButton = new StatesButtonControl
+            {
+				Text = "Hello Image",
+				NormalImage = "button",
+				DisableImage = "button_disabled",
+				PressedImage = "button_press",
 				TextColor = Color.White
-			};*/
+			};
 
 			// The root page of your application
 			MainPage = new ContentPage
@@ -37,15 +47,19 @@ namespace StatesButton.Test
 					VerticalOptions = LayoutOptions.Center,
 					Padding = new Thickness(20, 0),
 					Children = {
-						Button
+                        ColorButton,
+                        ImageButton
 					}
 				}
 			};
 		}
 
-		protected override void OnStart()
+        protected async override void OnStart()
 		{
-			// Handle when your app starts
+            // Handle when your app starts
+            await Task.Delay(5000);
+            ColorButton.IsEnabled = false;
+            ImageButton.IsEnabled = false;
 		}
 
 		protected override void OnSleep()

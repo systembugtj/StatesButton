@@ -3,84 +3,50 @@ using Xamarin.Forms;
 
 namespace StatesButton.Forms
 {
-	public class StatesButtonControl :Button
-	{
-		public StatesButtonControl ()
-		{
+    public class StatesButtonControl : Button
+    {
+        public static readonly BindableProperty DisableBackgroundColorProperty = BindableProperty.Create(nameof(DisableBackgroundColor), typeof(Color), typeof(StatesButtonControl), Color.Default, BindingMode.OneWay, null, null, null, null);
+        public static readonly BindableProperty PressedBackgroundColorProperty = BindableProperty.Create(nameof(PressedBackgroundColor), typeof(Color), typeof(StatesButtonControl), Color.Default, BindingMode.OneWay, null, null, null, null);
+        public static readonly BindableProperty NormalImageProperty = BindableProperty.Create(nameof(NormalImage), typeof(ImageSource), typeof(StatesButtonControl), null, BindingMode.OneWay, null, null, null, null);
+        public static readonly BindableProperty DisableImageProperty = BindableProperty.Create(nameof(DisableImage), typeof(ImageSource), typeof(StatesButtonControl), null, BindingMode.OneWay, null, null, null, null);
+        public static readonly BindableProperty PressedImageProperty = BindableProperty.Create(nameof(PressedImage), typeof(ImageSource), typeof(StatesButtonControl), null, BindingMode.OneWay, null, null, null, null);
 
-		}
+        #region Color Impl
 
-		#region Color Impl
+        public Color DisableBackgroundColor
+        {
+            get => (Color)GetValue(DisableBackgroundColorProperty);
+            set => SetValue(DisableBackgroundColorProperty, value);
+        }
 
-		public static readonly BindableProperty DisableBackgroundColorProperty =
-			BindableProperty.Create("DisableBackgroundColor", typeof(Color), typeof(StatesButtonControl), Color.Default, BindingMode.OneWay, null, null, null, null);
+        public Color PressedBackgroundColor
+        {
+            get => (Color)GetValue(PressedBackgroundColorProperty);
+            set => SetValue(PressedBackgroundColorProperty, value);
+        }
 
-		public Color DisableBackgroundColor
-		{
-			get {
-				return (Color)GetValue(DisableBackgroundColorProperty);
-			}
-			set {
-				SetValue(DisableBackgroundColorProperty, value);
-			}
-		}
+        #endregion
 
-		public static readonly BindableProperty PressedBackgroundColorProperty =
-			BindableProperty.Create("PressedBackgroundColor", typeof(Color), typeof(StatesButtonControl), Color.Default, BindingMode.OneWay, null, null, null, null);
+        #region Image Impl
 
-		public Color PressedBackgroundColor
-		{
-			get {
-				return (Color)GetValue(PressedBackgroundColorProperty);
-			}
-			set {
-				SetValue(PressedBackgroundColorProperty, value);
-			}
-		}
+        public ImageSource NormalImage
+        {
+            get => (ImageSource)GetValue(NormalImageProperty);
+            set => SetValue(NormalImageProperty, value);
+        }
 
-		#endregion
+        public ImageSource DisableImage
+        {
+            get => (ImageSource)GetValue(DisableImageProperty);
+            set => SetValue(DisableImageProperty, value);
+        }
 
-		#region Image Impl
+        public ImageSource PressedImage
+        {
+            get => (ImageSource)GetValue(PressedImageProperty);
+            set => SetValue(PressedImageProperty, value);
+        }
 
-		public static readonly BindableProperty NormalImageProperty =
-			BindableProperty.Create("NormalImage", typeof(ImageSource), typeof(StatesButtonControl), null, BindingMode.OneWay, null, null, null, null);
-
-		public ImageSource NormalImage
-		{
-			get {
-				return (ImageSource)GetValue(NormalImageProperty);
-			}
-			set {
-				SetValue(NormalImageProperty, value);
-			}
-		}
-
-		public static readonly BindableProperty DisableImageProperty =
-			BindableProperty.Create("DisableImage", typeof(ImageSource), typeof(StatesButtonControl), null, BindingMode.OneWay, null, null, null, null);
-
-		public ImageSource DisableImage
-		{
-			get {
-				return (ImageSource)GetValue(DisableImageProperty);
-			}
-			set {
-				SetValue(DisableImageProperty, value);
-			}
-		}
-
-		public static readonly BindableProperty PressedImageProperty =
-			BindableProperty.Create("PressedImage", typeof(ImageSource), typeof(StatesButtonControl), null, BindingMode.OneWay, null, null, null, null);
-
-		public ImageSource PressedImage
-		{
-			get {
-				return (ImageSource)GetValue(PressedImageProperty);
-			}
-			set {
-				SetValue(PressedImageProperty, value);
-			}
-		}
-
-		#endregion
-	}
+        #endregion
+    }
 }
