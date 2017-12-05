@@ -1,9 +1,9 @@
-#StatesButton
+# StatesButton
 States Button Control for Xamarin.Forms
 
-##Setup
+## Setup
 
-###iOS
+### iOS
 
 In your AppDelegate add this:
 
@@ -11,7 +11,7 @@ In your AppDelegate add this:
 StatesButtonRenderer.Init();
 ```
 
-###Android
+### Android
 
 In your MainActivity add this:
 
@@ -19,7 +19,7 @@ In your MainActivity add this:
 StatesButtonRenderer.Init();
 ```
 
-##Usage
+## Usage
 
 Images background states
 
