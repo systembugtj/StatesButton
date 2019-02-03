@@ -9,10 +9,9 @@
     <Import_RootNamespace>StatesButton.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Extentions\AccessExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Extentions\ImageSourceExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\ImageSourceExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Extentions\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Extensions\" />
   </ItemGroup>
 </Project>

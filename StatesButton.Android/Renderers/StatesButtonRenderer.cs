@@ -84,7 +84,7 @@ namespace StatesButton.Android.Renderers
             base.Dispose(disposing);
         }
 
-        void BuildColorBackground()
+        protected virtual void BuildColorBackground()
         {
             using (var statesBackground = new StateListDrawable())
             {
@@ -128,7 +128,7 @@ namespace StatesButton.Android.Renderers
             }
         }
 
-        async Task BuildBackground()
+        protected virtual async Task BuildBackground()
         {
             using (var statesBackground = new StateListDrawable())
             {

@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<id>StatesButton.Forms</id>
-		<version>2.0.0</version>
+		<version>3.0.0</version>
 		<title>States Button for Xamarin.Forms</title>
 		<authors>Alejandro Ruiz</authors>
 		<owners>Alejandro Ruiz</owners>
@@ -15,31 +15,31 @@
 		<tags>xamarin, pcl, xam.pcl, plugin, plugin for xamarin.forms, android, xamarin.forms, ios, states, button</tags>
 		<dependencies>
             <group targetFramework="win">
-                <dependency id="Xamarin.Forms" version="2.5.0.121934" />
+                <dependency id="Xamarin.Forms" version="3.4.0.1029999" />
             </group>
             <group targetFramework="netstandard1.0">
-                <dependency id="Xamarin.Forms" version="2.5.0.121934" />
+                <dependency id="Xamarin.Forms" version="3.4.0.1029999" />
             </group>
             <group targetFramework="portable-net45+win+wpa81+wp80">
-                <dependency id="Xamarin.Forms" version="2.5.0.121934" />
+                <dependency id="Xamarin.Forms" version="3.4.0.1029999" />
             </group>
 			<group targetFramework="net">
-				<dependency id="Xamarin.Forms" version="2.5.0.121934" />
+				<dependency id="Xamarin.Forms" version="3.4.0.1029999" />
 			</group>
 			<group targetFramework="MonoAndroid10">
-				<dependency id="Xamarin.Forms" version="2.5.0.121934" />
+				<dependency id="Xamarin.Forms" version="3.4.0.1029999" />
 			</group>
 			<group targetFramework="Xamarin.iOS10">
-				<dependency id="Xamarin.Forms" version="2.5.0.121934" />
+				<dependency id="Xamarin.Forms" version="3.4.0.1029999" />
 			</group>
 			<group targetFramework="portable-net45+win8+wpa81+wp8">
-				<dependency id="Xamarin.Forms" version="2.5.0.121934" />
+				<dependency id="Xamarin.Forms" version="3.4.0.1029999" />
 			</group>
             <group targetFramework="portable-net45+win8+wpa81+wp8">
-                <dependency id="Xamarin.Forms" version="2.5.0.121934" />
+                <dependency id="Xamarin.Forms" version="3.4.0.1029999" />
             </group>
 			<group targetFramework="dotnet">
-				<dependency id="Xamarin.Forms" version="2.5.0.121934" />
+				<dependency id="Xamarin.Forms" version="3.4.0.1029999" />
 			</group>
 		</dependencies>
 	</metadata>

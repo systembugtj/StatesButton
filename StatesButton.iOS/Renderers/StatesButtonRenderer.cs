@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Reflection;
 using System.Threading.Tasks;
-using Foundation;
 using StatesButton.Forms;
 using StatesButton.iOS.Renderers;
 using UIKit;
@@ -9,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using StatesButton.Shared;
 using CoreGraphics;
+using Xamarin.Forms.Internals;
 
 [assembly: ExportRenderer(typeof(StatesButtonControl), typeof(StatesButtonRenderer))]
 namespace StatesButton.iOS.Renderers
@@ -16,15 +16,9 @@ namespace StatesButton.iOS.Renderers
     [Preserve(AllMembers = true)]
     public class StatesButtonRenderer : ButtonRenderer
     {
-        public static void Init()
+        public static new void Init()
         {
-            var hack = DateTime.Now;
-        }
-
-        UIButton _byPassButton;
-
-        public StatesButtonRenderer()
-        {
+            var date = DateTime.Now;
         }
 
         public StatesButtonControl BaseElement => Element as StatesButtonControl;
@@ -33,25 +27,6 @@ namespace StatesButton.iOS.Renderers
         {
             base.OnElementChanged(e);
 
-            if (_byPassButton == null)
-            {
-                _byPassButton = new UIButton(UIButtonType.Custom);
-                _byPassButton.Frame = this.Frame;
-                SetNativeControl(_byPassButton);
-                base.Control.TouchUpInside += byPassButton_TouchUpInside;
-                base.Control.TouchUpInside += byPassButton_TouchDown;
-
-                SetField(this, "_buttonTextColorDefaultNormal", base.Control.TitleColor(UIControlState.Normal));
-                SetField(this, "_buttonTextColorDefaultHighlighted", base.Control.TitleColor(UIControlState.Highlighted));
-                SetField(this, "_buttonTextColorDefaultDisabled", base.Control.TitleColor(UIControlState.Disabled));
-
-                InvokeMethod(this, "UpdateText", null);
-                InvokeMethod(this, "UpdateFont", null);
-                InvokeMethod(this, "UpdateBorder", null);
-                InvokeMethod(this, "UpdateImage", null);
-                InvokeMethod(this, "UpdateTextColor", null);
-            }
-
             if (e.NewElement != null)
             {
                 Control.ShowsTouchWhenHighlighted = false;
@@ -59,8 +34,7 @@ namespace StatesButton.iOS.Renderers
                 await SetNormalImageResource();
                 await SetDisableImageResource();
                 await SetPressImageResource();
-                var statesButton = e.NewElement as StatesButtonControl;
-                if (statesButton.BackgroundColor != Color.Default && statesButton.PressedBackgroundColor != Color.Default && statesButton.DisableBackgroundColor != Color.Default)
+                if (e.NewElement is StatesButtonControl statesButton && statesButton.BackgroundColor != Color.Default && statesButton.PressedBackgroundColor != Color.Default && statesButton.DisableBackgroundColor != Color.Default)
                 {
                     Control.ShowsTouchWhenHighlighted = false;
                     SetNormalColorResource();
@@ -69,6 +43,8 @@ namespace StatesButton.iOS.Renderers
                 }
             }
         }
+
+        protected override UIButton CreateNativeControl() => new UIButton(UIButtonType.Custom);
 
         protected async override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -99,32 +75,9 @@ namespace StatesButton.iOS.Renderers
             }
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (base.Control != null)
-                {
-                    base.Control.TouchUpInside -= byPassButton_TouchUpInside;
-                    base.Control.TouchDown -= byPassButton_TouchDown;
-                }
-            }
-            base.Dispose(disposing);
-        }
-
-        void byPassButton_TouchUpInside(object sender, EventArgs e)
-        {
-            InvokeMethod(this, "OnButtonTouchUpInside", sender, e);
-        }
-
-        void byPassButton_TouchDown(object sender, EventArgs e)
-        {
-            InvokeMethod(this, "OnButtonTouchDown", sender, e);
-        }
-
         #region Color Impl
 
-        void SetNormalColorResource()
+        protected virtual void SetNormalColorResource()
         {
             UIImage source = null;
             if (BaseElement.BackgroundColor != Color.Default)
@@ -134,7 +87,7 @@ namespace StatesButton.iOS.Renderers
             Control.SetBackgroundImage(source, UIControlState.Normal);
         }
 
-        void SetDisableColorResource()
+        protected virtual void SetDisableColorResource()
         {
             UIImage source = null;
             if (BaseElement.BackgroundColor != Color.Default)
@@ -144,7 +97,7 @@ namespace StatesButton.iOS.Renderers
             Control.SetBackgroundImage(source, UIControlState.Disabled);
         }
 
-        void SetPressColorResource()
+        protected virtual void SetPressColorResource()
         {
             UIImage source = null;
             if (BaseElement.BackgroundColor != Color.Default)
@@ -156,7 +109,7 @@ namespace StatesButton.iOS.Renderers
             Control.SetBackgroundImage(source, UIControlState.Highlighted);
         }
 
-        UIImage ImageFromColor(UIColor color)
+        protected virtual UIImage ImageFromColor(UIColor color)
         {
             CGRect rect = new CGRect(0.0f, 0.0f, 1.0f, 1.0f);
             UIGraphics.BeginImageContext(rect.Size);
@@ -172,7 +125,7 @@ namespace StatesButton.iOS.Renderers
 
         #region Image Impl
 
-        async Task SetNormalImageResource()
+        protected virtual async Task SetNormalImageResource()
         {
             UIImage source = null;
             if (BaseElement.NormalImage != null)
@@ -183,7 +136,7 @@ namespace StatesButton.iOS.Renderers
             Control.SetBackgroundImage(source, UIControlState.Normal);
         }
 
-        async Task SetDisableImageResource()
+        protected virtual async Task SetDisableImageResource()
         {
             UIImage source = null;
             if (BaseElement.DisableImage != null)
@@ -194,78 +147,24 @@ namespace StatesButton.iOS.Renderers
             Control.SetBackgroundImage(source, UIControlState.Disabled);
         }
 
-        async Task SetPressImageResource()
+        protected virtual async Task SetPressImageResource()
         {
             UIImage source = null;
             if (BaseElement.PressedImage != null)
             {
                 var handler = BaseElement.PressedImage.GetHandler();
                 source = await handler.LoadImageAsync(BaseElement.PressedImage);
-                base.Control.ShowsTouchWhenHighlighted = false;
+                Control.ShowsTouchWhenHighlighted = false;
             }
 
             if (source == null)
             {
-                base.Control.ShowsTouchWhenHighlighted = true;
+                Control.ShowsTouchWhenHighlighted = true;
             }
             Control.SetBackgroundImage(source, UIControlState.Selected);
             Control.SetBackgroundImage(source, UIControlState.Highlighted);
         }
 
         #endregion
-
-        public object InvokeMethod(object target, string methodName, params object[] args)
-        {
-            Type t = target.GetType();
-            MethodInfo mi = null;
-
-            while (t != null)
-            {
-                mi = t.GetMethod(methodName, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-
-                if (mi != null) break;
-
-                t = t.BaseType;
-            }
-
-            if (mi == null)
-            {
-                throw new Exception(string.Format("Method '{0}' not found in type hierarchy.", methodName));
-            }
-
-            return mi.Invoke(target, args);
-        }
-
-        public void SetField(object target, string fieldName, object value)
-        {
-            if (target == null)
-            {
-                throw new ArgumentNullException(nameof(target), "The assignment target cannot be null.");
-            }
-
-            if (string.IsNullOrEmpty(fieldName))
-            {
-                throw new ArgumentException(nameof(fieldName), "The field name cannot be null or empty.");
-            }
-
-            Type t = target.GetType();
-            FieldInfo fi = null;
-
-            while (t != null)
-            {
-                fi = t.GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic);
-
-                if (fi != null) break;
-
-                t = t.BaseType;
-            }
-
-            if (fi == null)
-            {
-                throw new Exception(string.Format("Field '{0}' not found in type hierarchy.", fieldName));
-            }
-
-            fi.SetValue(target, value);
-        }
     }
 }
