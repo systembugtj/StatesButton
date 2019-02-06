@@ -130,74 +130,100 @@ namespace StatesButton.Android.Renderers
 
         protected virtual async Task BuildBackground()
         {
-            using (var statesBackground = new StateListDrawable())
+            try
             {
-                if (BaseElement.NormalImage != null)
+                using (var statesBackground = new StateListDrawable())
                 {
-                    var normalHandler = BaseElement.NormalImage.GetHandler();
-                    using (var imgNormal = await normalHandler.LoadImageAsync(BaseElement.NormalImage, base.Context))
+                    if (BaseElement.NormalImage != null)
                     {
-                        statesBackground.AddState(
-                            new int[]{
+                        var normalHandler = BaseElement.NormalImage.GetHandler();
+                        if (normalHandler != null)
+                        {
+                            using (var imgNormal = await normalHandler.LoadImageAsync(BaseElement.NormalImage, base.Context))
+                            {
+                                if (imgNormal != null)
+                                {
+                                    statesBackground.AddState(
+                                        new int[]{
                                 -global::Android.Resource.Attribute.StatePressed,
                                 global::Android.Resource.Attribute.StateEnabled
-                            },
-                            new BitmapDrawable(imgNormal)
-                        );
-                        if (BaseElement.PressedImage == null)
-                        {
-                            statesBackground.AddState(
-                                new int[] {
+                                        },
+                                        new BitmapDrawable(imgNormal)
+                                    );
+                                    if (BaseElement.PressedImage == null)
+                                    {
+                                        statesBackground.AddState(
+                                            new int[] {
                                     global::Android.Resource.Attribute.StatePressed,
                                     global::Android.Resource.Attribute.StateEnabled
-                                },
-                                new BitmapDrawable(imgNormal)
-                            );
-                        }
-                        if (BaseElement.DisableImage == null)
-                        {
-                            statesBackground.AddState(
-                                new int[] {
+                                            },
+                                            new BitmapDrawable(imgNormal)
+                                        );
+                                    }
+                                    if (BaseElement.DisableImage == null)
+                                    {
+                                        statesBackground.AddState(
+                                            new int[] {
                                     -global::Android.Resource.Attribute.StateEnabled
-                                },
-                                new BitmapDrawable(imgNormal)
-                            );
+                                            },
+                                            new BitmapDrawable(imgNormal)
+                                        );
+                                    }
+                                }
+                            }
                         }
                     }
-                }
 
-                if (BaseElement.PressedImage != null)
-                {
-                    var pressedHandler = BaseElement.PressedImage.GetHandler();
-                    using (var imgPressed = await pressedHandler.LoadImageAsync(BaseElement.PressedImage, base.Context))
+                    if (BaseElement.PressedImage != null)
                     {
-                        statesBackground.AddState(
-                            new int[] {
+                        var pressedHandler = BaseElement.PressedImage.GetHandler();
+                        if (pressedHandler != null)
+                        {
+                            using (var imgPressed = await pressedHandler.LoadImageAsync(BaseElement.PressedImage, base.Context))
+                            {
+                                if (imgPressed != null)
+                                {
+                                    statesBackground.AddState(
+                                        new int[] {
                                 global::Android.Resource.Attribute.StatePressed,
                                 global::Android.Resource.Attribute.StateEnabled
-                            },
-                            new BitmapDrawable(imgPressed)
-                        );
+                                        },
+                                        new BitmapDrawable(imgPressed)
+                                    );
+                                }
+                            }
+                        }
                     }
-                }
-                if (BaseElement.DisableImage != null)
-                {
-                    var disableHandler = BaseElement.DisableImage.GetHandler();
-                    using (var imgDisable = await disableHandler.LoadImageAsync(BaseElement.DisableImage, base.Context))
-                    {
-                        statesBackground.AddState(
-                            new int[] {
-                                -global::Android.Resource.Attribute.StateEnabled
-                            },
-                            new BitmapDrawable(imgDisable)
-                        );
-                    }
-                }
 
-                if (Control != null)
-                {
-                    Control.Background = statesBackground;
+                    if (BaseElement.DisableImage != null)
+                    {
+                        var disableHandler = BaseElement.DisableImage.GetHandler();
+                        if (disableHandler != null)
+                        {
+                            using (var imgDisable = await disableHandler.LoadImageAsync(BaseElement.DisableImage, base.Context))
+                            {
+                                if (imgDisable != null)
+                                {
+                                    statesBackground.AddState(
+                                            new int[] {
+                                -global::Android.Resource.Attribute.StateEnabled
+                                            },
+                                            new BitmapDrawable(imgDisable)
+                                        );
+                                }
+                            }
+                        }
+                    }
+
+                    if (Control != null)
+                    {
+                        Control.Background = statesBackground;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
     }
