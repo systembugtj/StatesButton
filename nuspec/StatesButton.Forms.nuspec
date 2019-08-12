@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+	<metadata>
+		<id>StatesButton.Forms</id>
+		<version>3.0.2</version>
+		<title>States Button for Xamarin.Forms</title>
+		<authors>Alejandro Ruiz</authors>
+		<owners>Alejandro Ruiz</owners>
+		<iconUrl>http://alejandroruizvarela.com/images/statesbuttonlogo.png</iconUrl>
+        <licenseUrl>https://github.com/AlejandroRuiz/StatesButton/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/AlejandroRuiz/StatesButton</projectUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>States Button for Xamarin.Forms.</description>
+		<summary>States Button for Xamarin.Forms.</summary>
+		<tags>xamarin, pcl, xam.pcl, plugin, plugin for xamarin.forms, android, xamarin.forms, ios, states, button</tags>
+		<dependencies>
+            <group>
+                <dependency id="Xamarin.Forms" />
+            </group>
+		</dependencies>
+	</metadata>
+	<files>
+        <!--netstandard-->
+        <file src="StatesButton.Forms/bin/Release/netstandard2.0/StatesButton.Forms.dll" target="lib/netstandard2.0" />
+
+		<!--Xamarin.Android-->
+		<file src="StatesButton.Android/bin/Release/StatesButton.Android.dll" target="lib/MonoAndroid" />
+		<file src="StatesButton.Forms/bin/Release/netstandard2.0/StatesButton.Forms.dll" target="lib/MonoAndroid" />
+
+		<!--Xamarin.iOS-->
+		<file src="StatesButton.iOS/bin/Release/StatesButton.iOS.dll" target="lib/Xamarin.iOS" />
+		<file src="StatesButton.Forms/bin/Release/netstandard2.0/StatesButton.Forms.dll" target="lib/Xamarin.iOS" />
+	</files>
+</package>
