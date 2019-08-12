@@ -104,6 +104,6 @@ Global
 		{3A3B25C7-4A72-4A33-BC33-74E9E9BA9E0A} = {F2036858-C3AE-4577-8DEC-A47E9E00F431}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		version = 3.0.2
+		version = 3.0.3
 	EndGlobalSection
 EndGlobal
