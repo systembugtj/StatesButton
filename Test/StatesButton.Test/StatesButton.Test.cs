@@ -54,15 +54,22 @@ namespace StatesButton.Test
 			};
 		}
 
-        protected async override void OnStart()
-		{
-            // Handle when your app starts
-            await Task.Delay(5000);
-            ColorButton.IsEnabled = false;
-            ImageButton.IsEnabled = false;
-		}
 
-		protected override void OnSleep()
+        protected override void OnStart()
+        {
+
+            Task.Run(async () =>
+            {
+                // Handle when your app starts
+                await Task.Delay(5000);
+                ColorButton.IsEnabled = false;
+                ImageButton.IsEnabled = false;
+            });
+
+            base.OnStart();
+        }
+
+        protected override void OnSleep()
 		{
 			// Handle when your app sleeps
 		}
